@@ -21,8 +21,6 @@ namespace ANGELvsD
         private CheckBox lastChBox;
         private CheckBox chb;
 
-        //private CheckBox checkBox;
-
         public DiaForm()
         {
             InitializeComponent();
@@ -46,11 +44,6 @@ namespace ANGELvsD
             Control c = FromHandle(hwnd);
             return c;
         }
-
-        //private void CheckBox_CheckedChanged(Object sender, EventArgs e)
-        //{
-
-        //}
 
         private void buttonReset_Click(object sender, EventArgs e)
         {
@@ -117,14 +110,9 @@ namespace ANGELvsD
             tableLayoutPanel.Controls.AddRange(chBoxes);   
         }
 
-        private void tableLayoutPanel_MouseClick(object sender, MouseEventArgs e)
-        {
-
-        }
-
         private void checkBox_Click(object sender, EventArgs e)
         {
-            // смена хода:
+            // перемена хода:
             if (label.Text == "Ход\nАнгела")
             {
                 label.Text = "Ход\nДьявола";
@@ -156,14 +144,9 @@ namespace ANGELvsD
         //    MessageBox.Show(control.Name);
         //}
 
-        //private void IsAngelNext(int isAx, int isAy) //
-        //{
-            
-        //}
-
         private void checkBox_CheckedChanged(object sender, EventArgs e)
         {
-
+            // сделать запись в массив состояний
         }
     }
 }
