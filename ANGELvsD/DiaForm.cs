@@ -19,6 +19,8 @@ namespace ANGELvsD
         private CheckBox[] chBoxes = new CheckBox[1881];
         private bool isAngel;
         private CheckBox lastChBox;
+        private CheckBox chb;
+
         //private CheckBox checkBox;
 
         public DiaForm()
@@ -93,6 +95,7 @@ namespace ANGELvsD
                     chBoxes[a].ThreeState = true;
                     chBoxes[a].CheckedChanged += new EventHandler(checkBox_CheckedChanged);
                     chBoxes[a].Click += new EventHandler(checkBox_Click);
+                    chBoxes[a].MouseEnter += new EventHandler(checkBox_Enter);
                     if (chBoxes[a].Name== "chBox_16.27")
                     {
                         chBoxes[a].CheckState = CheckState.Checked;
@@ -104,10 +107,14 @@ namespace ANGELvsD
 
         }
 
+        private void checkBox_Enter(object sender, EventArgs e)
+        {
+
+        }
+
         private void DiaForm_Shown(object sender, EventArgs e)
         {
-            tableLayoutPanel.Controls.AddRange(chBoxes);
-            
+            tableLayoutPanel.Controls.AddRange(chBoxes);   
         }
 
         private void tableLayoutPanel_MouseClick(object sender, MouseEventArgs e)
@@ -129,13 +136,11 @@ namespace ANGELvsD
                 isAngel = false;
             }
 
-            CheckBox chb = (CheckBox)GetControlAt(MousePosition.X, MousePosition.Y);
-            
+            chb = (CheckBox)GetControlAt(MousePosition.X, MousePosition.Y);
 
             if (isAngel)
             {
                 lastChBox.CheckState = CheckState.Unchecked;
-                //CheckBox chb = (CheckBox)GetControlAt(MousePosition.X, MousePosition.Y);
                 chb.CheckState = CheckState.Checked;
                 lastChBox = chb;
             }
