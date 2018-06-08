@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,14 +13,17 @@ namespace ANGELvsD
 {
     public partial class DiaForm : Form
     {
+        [DllImport("user32.dll")]
+        private static extern IntPtr WindowFromPoint(Point point);
         private TableLayoutPanel tableLayoutPanel = new TableLayoutPanel();
         private CheckBox[] chBoxes = new CheckBox[1881];
-      private CheckBox checkBox;
+        private bool isAngel;
+        //private CheckBox checkBox;
 
         public DiaForm()
         {
             InitializeComponent();
-
+            isAngel = true;
             tableLayoutPanel.MouseClick += new MouseEventHandler(tableLayoutPanel_MouseClick);
             tableLayoutPanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;
             tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
@@ -32,10 +36,17 @@ namespace ANGELvsD
 
         }
 
-        private void CheckBox_CheckedChanged(Object sender, EventArgs e)
+        public static Control GetControlAt(int x, int y)
         {
-
+            IntPtr hwnd = WindowFromPoint(new Point(x, y));
+            Control c = FromHandle(hwnd);
+            return c;
         }
+
+        //private void CheckBox_CheckedChanged(Object sender, EventArgs e)
+        //{
+
+        //}
 
         private void buttonReset_Click(object sender, EventArgs e)
         {
@@ -43,7 +54,6 @@ namespace ANGELvsD
             ANGELvsD.AngelForm.ActiveForm.Activate();
             this.Close();
         }
-
         
         private void DataReset()
         {
@@ -67,17 +77,16 @@ namespace ANGELvsD
                 tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             }
 
-
             int a = 0;
-            for (int i = 0; i < tableLayoutPanel.ColumnCount; i++)
+            for (int i = 0; i < tableLayoutPanel.RowCount; i++)
             {
-                for (int j = 0; j < tableLayoutPanel.RowCount; j++)
+                for (int j = 0; j < tableLayoutPanel.ColumnCount; j++)
                 {
                     chBoxes[a] = new CheckBox();
                     chBoxes[a].Name = "chBox_" + i.ToString() + "." + j.ToString();
                     chBoxes[a].Tag = "tag_" + i.ToString() + "." + j.ToString();
                     chBoxes[a].Dock = DockStyle.Fill;
-                    chBoxes[a].Size = new Size(19, 19);
+                    chBoxes[a].Size = new Size(20, 20);
                     chBoxes[a].TextAlign = ContentAlignment.MiddleCenter;
                     chBoxes[a].ThreeState = true;
                     chBoxes[a].CheckedChanged += new EventHandler(checkBox_CheckedChanged);
@@ -90,45 +99,46 @@ namespace ANGELvsD
 
         private void DiaForm_Shown(object sender, EventArgs e)
         {
-            //int a = 0;
-            //for (int i = 0; i < tableLayoutPanel.ColumnCount; i++)
-            //{
-            //    for (int j = 0; j < tableLayoutPanel.RowCount; j++)
-            //    {
-            //        chBoxes[a] = new CheckBox();
-            //        chBoxes[a].Name = "chBox_" + i.ToString() + "." + j.ToString();
-            //        chBoxes[a].Tag = "tag_" + i.ToString() + "." + j.ToString();
-            //        chBoxes[a].Dock = DockStyle.Fill;
-            //      //chBoxes[a].Location = new System.Drawing.Point(0, 0);
-            //     // chBoxes[a].Size = new System.Drawing.Size(952, 544);
-            //    //  chBoxes[a].TabIndex = 0;
-            //        chBoxes[a].TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            //        chBoxes[a].ThreeState = true;
-            //        chBoxes[a].CheckedChanged += new EventHandler(checkBox_CheckedChanged);
-            //        chBoxes[a].Click += new EventHandler(checkBox_Click);
-            //        a++;
-            //    }          
-            //}
             tableLayoutPanel.Controls.AddRange(chBoxes);
         }
 
         private void tableLayoutPanel_MouseClick(object sender, MouseEventArgs e)
         {
-            // смена хода:
-            if (label.Text == "Ход\nАнгела") label.Text = "Ход\nДьявола";
-            else label.Text = "Ход\nАнгела";
-            //tableLayoutPanel.GetCellPosition();
+
         }
 
         private void checkBox_Click(object sender, EventArgs e)
         {
-            IsAngelNext(0, 0);
+            // смена хода:
+            if (label.Text == "Ход\nАнгела")
+            {
+                label.Text = "Ход\nДьявола";
+                isAngel = false;
+            }
+            else
+            {
+                label.Text = "Ход\nАнгела";
+                isAngel = true;
+            }
+            // тут ещё функтию надобно писать
+            //GetChBoxName(GetControlAt(MousePosition.X, MousePosition.Y));
+            if (isAngel)
+            {
+                CheckBox chb = (CheckBox)GetControlAt(MousePosition.X, MousePosition.Y);
+                chb.CheckState = CheckState.Indeterminate;
+            }
+            //tableLayoutPanel.GetCellPosition();
         }
 
-        private void IsAngelNext(int isAx, int isAy) //
-        {
+        //private void GetChBoxName(Control control)
+        //{
+        //    MessageBox.Show(control.Name);
+        //}
+
+        //private void IsAngelNext(int isAx, int isAy) //
+        //{
             
-        }
+        //}
 
         private void checkBox_CheckedChanged(object sender, EventArgs e)
         {
