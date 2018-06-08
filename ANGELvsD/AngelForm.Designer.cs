@@ -42,7 +42,7 @@
             this.numericUpDownALeave.Location = new System.Drawing.Point(79, 104);
             this.numericUpDownALeave.Name = "numericUpDownALeave";
             this.numericUpDownALeave.Size = new System.Drawing.Size(173, 43);
-            this.numericUpDownALeave.TabIndex = 0;
+            this.numericUpDownALeave.TabIndex = 10;
             this.numericUpDownALeave.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numericUpDownALeave.Value = new decimal(new int[] {
             1,
@@ -66,7 +66,7 @@
             this.buttonStart.Location = new System.Drawing.Point(79, 185);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(173, 65);
-            this.buttonStart.TabIndex = 2;
+            this.buttonStart.TabIndex = 1;
             this.buttonStart.Text = "Играть";
             this.buttonStart.UseVisualStyleBackColor = true;
             this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
