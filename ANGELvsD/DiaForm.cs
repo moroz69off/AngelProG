@@ -18,11 +18,13 @@ namespace ANGELvsD
         private TableLayoutPanel tableLayoutPanel = new TableLayoutPanel();
         private CheckBox[] chBoxes = new CheckBox[1881];
         private bool isAngel;
+        private CheckBox lastChBox;
         //private CheckBox checkBox;
 
         public DiaForm()
         {
             InitializeComponent();
+            lastChBox = new CheckBox();
             isAngel = true;
             tableLayoutPanel.MouseClick += new MouseEventHandler(tableLayoutPanel_MouseClick);
             tableLayoutPanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;
@@ -91,6 +93,11 @@ namespace ANGELvsD
                     chBoxes[a].ThreeState = true;
                     chBoxes[a].CheckedChanged += new EventHandler(checkBox_CheckedChanged);
                     chBoxes[a].Click += new EventHandler(checkBox_Click);
+                    if (chBoxes[a].Name== "chBox_16.27")
+                    {
+                        chBoxes[a].CheckState = CheckState.Checked;
+                        lastChBox = chBoxes[a];
+                    }
                     a++;
                 }
             }
@@ -100,6 +107,7 @@ namespace ANGELvsD
         private void DiaForm_Shown(object sender, EventArgs e)
         {
             tableLayoutPanel.Controls.AddRange(chBoxes);
+            
         }
 
         private void tableLayoutPanel_MouseClick(object sender, MouseEventArgs e)
@@ -113,18 +121,26 @@ namespace ANGELvsD
             if (label.Text == "Ход\nАнгела")
             {
                 label.Text = "Ход\nДьявола";
-                isAngel = false;
+                isAngel = true;
             }
             else
             {
                 label.Text = "Ход\nАнгела";
-                isAngel = true;
+                isAngel = false;
             }
-            // тут ещё функтию надобно писать
-            //GetChBoxName(GetControlAt(MousePosition.X, MousePosition.Y));
+
+            CheckBox chb = (CheckBox)GetControlAt(MousePosition.X, MousePosition.Y);
+            
+
             if (isAngel)
             {
-                CheckBox chb = (CheckBox)GetControlAt(MousePosition.X, MousePosition.Y);
+                lastChBox.CheckState = CheckState.Unchecked;
+                //CheckBox chb = (CheckBox)GetControlAt(MousePosition.X, MousePosition.Y);
+                chb.CheckState = CheckState.Checked;
+                lastChBox = chb;
+            }
+            else
+            {
                 chb.CheckState = CheckState.Indeterminate;
             }
             //tableLayoutPanel.GetCellPosition();
