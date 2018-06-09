@@ -26,7 +26,6 @@ namespace ANGELvsD
             InitializeComponent();
             lastChBox = new CheckBox();
             isAngel = true;
-            tableLayoutPanel.MouseClick += new MouseEventHandler(tableLayoutPanel_MouseClick);
             tableLayoutPanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;
             tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanel.Dock = DockStyle.Fill;
