@@ -49,6 +49,7 @@
             0,
             0,
             0});
+            this.numericUpDownALeave.ValueChanged += new System.EventHandler(this.numericUpDownALeave_ValueChanged);
             // 
             // labelPower
             // 
@@ -99,7 +100,6 @@
             this.Name = "AngelForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ангел и дьявол";
-            this.Load += new System.EventHandler(this.AngelForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownALeave)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

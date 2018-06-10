@@ -52,7 +52,7 @@
             this.panel.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel.Location = new System.Drawing.Point(119, 12);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(821, 520);
+            this.panel.Size = new System.Drawing.Size(549, 546);
             this.panel.TabIndex = 1;
             // 
             // label
@@ -61,25 +61,25 @@
             this.label.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label.Location = new System.Drawing.Point(12, 49);
             this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(50, 25);
+            this.label.Size = new System.Drawing.Size(0, 25);
             this.label.TabIndex = 0;
             // 
             // DiaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(952, 544);
+            this.ClientSize = new System.Drawing.Size(680, 570);
             this.Controls.Add(this.label);
             this.Controls.Add(this.panel);
             this.Controls.Add(this.buttonReset);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "DiaForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ангел и дьявол";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.DiaForm_Load);
             this.Shown += new System.EventHandler(this.DiaForm_Shown);
             this.ResumeLayout(false);
