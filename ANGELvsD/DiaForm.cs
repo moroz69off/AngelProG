@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ANGELvsD
@@ -18,14 +12,14 @@ namespace ANGELvsD
         private TableLayoutPanel tableLayoutPanel = new TableLayoutPanel();
         private CheckBox[] chBoxes = new CheckBox[441];
         private bool isAngel;
-        private CheckBox lastChBox, nextChBox, chb;
+        private CheckBox lastChBox, chb;
         private static int Apower;
         private bool isPower;
 
 
         static AngelForm AF = new AngelForm();
-
-        PowerDelegate powerDelegate = new PowerDelegate(GetPow);
+        private PowerDelegate powerDelegate = new PowerDelegate(GetPow);
+        private bool isBlocked;
 
         public DiaForm()
         {
@@ -93,7 +87,7 @@ namespace ANGELvsD
                     chBoxes[a] = new CheckBox();
                     chBoxes[a].Name = "chBox_" + i.ToString("00") + "." + j.ToString("00");
                     chBoxes[a].Tag = "tag_" + i.ToString("00") + "." + j.ToString("00");
-                    chBoxes[a].Dock = DockStyle.Fill;
+                    //chBoxes[a].Dock = DockStyle.Fill;
                     chBoxes[a].Size = new Size(24, 24);
                     chBoxes[a].TextAlign = ContentAlignment.MiddleCenter;
                     chBoxes[a].ThreeState = true;
@@ -126,7 +120,6 @@ namespace ANGELvsD
         //    Control contr = GetControlAt(MousePosition.X, MousePosition.Y);
         //}
 
-
         private void checkBox_Click(object sender, EventArgs e)
         {
             // перемена хода:
@@ -145,7 +138,9 @@ namespace ANGELvsD
 
             if (isAngel)
             {
-                IsPower();//?
+                isBlock();
+                IsPower();
+
                 if (isPower)
                 {
                     AngelTookСell();
@@ -155,8 +150,23 @@ namespace ANGELvsD
             else
             {
                 chb.CheckState = CheckState.Indeterminate;
+                chb.Enabled = false;
+                chb.BackColor = Color.DarkGray;
             }
             //tableLayoutPanel.GetCellPosition();
+        }
+
+        private bool isBlock()
+        {
+            if (chb.CheckState == CheckState.Indeterminate)
+            {
+                isBlocked = true;
+            }
+            else
+            {
+                isBlocked = false;
+            }
+            return isBlocked;
         }
 
         private void AngelTookСell()
@@ -193,7 +203,7 @@ namespace ANGELvsD
             coordNext_Y = Int32.Parse(nextYstr);
             int deliverX = Math.Abs(coordNext_X - coordCurr_X);
             int deliverY = Math.Abs(coordNext_Y - coordCurr_Y);
-            if (Math.Abs(deliverX) >= Apower || Math.Abs(deliverY) >= Apower)
+            if (Math.Abs(deliverX) > Apower || Math.Abs(deliverY) > Apower)
             {
                 MessageBox.Show("Недостаточно сил.");
 

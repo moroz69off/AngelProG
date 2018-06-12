@@ -49,7 +49,7 @@
             0,
             0,
             0});
-            this.numericUpDownALeave.ValueChanged += new System.EventHandler(this.numericUpDownALeave_ValueChanged);
+            this.numericUpDownALeave.ValueChanged += new System.EventHandler(this.NumericUpDownALeave_ValueChanged);
             // 
             // labelPower
             // 
@@ -70,7 +70,7 @@
             this.buttonStart.TabIndex = 1;
             this.buttonStart.Text = "Играть";
             this.buttonStart.UseVisualStyleBackColor = true;
-            this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
+            this.buttonStart.Click += new System.EventHandler(this.ButtonStart_Click);
             // 
             // buttonExit
             // 
@@ -82,7 +82,7 @@
             this.buttonExit.TabIndex = 3;
             this.buttonExit.Text = "Выход";
             this.buttonExit.UseVisualStyleBackColor = true;
-            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
+            this.buttonExit.Click += new System.EventHandler(this.ButtonExit_Click);
             // 
             // AngelForm
             // 

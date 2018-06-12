@@ -79,7 +79,6 @@
             this.Name = "DiaForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ангел и дьявол";
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.DiaForm_Load);
             this.Shown += new System.EventHandler(this.DiaForm_Shown);
             this.ResumeLayout(false);

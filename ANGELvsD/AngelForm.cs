@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ANGELvsD
@@ -23,30 +16,20 @@ namespace ANGELvsD
             APower = Pow((int)numericUpDownALeave.Value);
         }
 
-        static int GetPow(int ap)
-        {
-            return ap;
-        }
+        private static int GetPow(int ap) { return ap; }
 
-        private void buttonStart_Click(object sender, EventArgs e)
+        private void ButtonStart_Click(object sender, EventArgs e)
         {
-            DiaForm diaForm = new DiaForm();
-            diaForm.Owner = ActiveForm;
+            DiaForm diaForm = new DiaForm { Owner = ActiveForm };
             diaForm.ShowDialog();
         }
 
-        private void buttonExit_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+        private void ButtonExit_Click(object sender, EventArgs e) { Close(); }
 
-        private void numericUpDownALeave_ValueChanged(object sender, EventArgs e)
+        private void NumericUpDownALeave_ValueChanged(object sender, EventArgs e)
         {
             DiaForm DF = new DiaForm();
             DF.Power((int)numericUpDownALeave.Value);
-            //PowerDelegate Pow = new PowerDelegate(GetPow);
-            //APower = Pow((int)numericUpDownALeave.Value);
-            //APower = (int)numericUpDownALeave.Value;
         }
     }
 }
