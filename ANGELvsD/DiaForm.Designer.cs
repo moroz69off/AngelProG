@@ -40,7 +40,7 @@
             this.buttonReset.Name = "buttonReset";
             this.buttonReset.Size = new System.Drawing.Size(101, 23);
             this.buttonReset.TabIndex = 0;
-            this.buttonReset.Text = "В начало";
+            this.buttonReset.Text = "Вsыход";
             this.buttonReset.UseVisualStyleBackColor = true;
             this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
             // 

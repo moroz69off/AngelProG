@@ -42,8 +42,10 @@ namespace ANGELvsD
 
         private void numericUpDownALeave_ValueChanged(object sender, EventArgs e)
         {
-            PowerDelegate Pow = new PowerDelegate(GetPow);
-            APower = Pow((int)numericUpDownALeave.Value);
+            DiaForm DF = new DiaForm();
+            DF.Power((int)numericUpDownALeave.Value);
+            //PowerDelegate Pow = new PowerDelegate(GetPow);
+            //APower = Pow((int)numericUpDownALeave.Value);
             //APower = (int)numericUpDownALeave.Value;
         }
     }

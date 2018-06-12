@@ -19,10 +19,13 @@ namespace ANGELvsD
         private CheckBox[] chBoxes = new CheckBox[441];
         private bool isAngel;
         private CheckBox lastChBox, nextChBox, chb;
-        private int power;
+        private static int Apower;
         private bool isPower;
 
-        AngelForm AF = new AngelForm();
+
+        static AngelForm AF = new AngelForm();
+
+        PowerDelegate powerDelegate = new PowerDelegate(GetPow);
 
         public DiaForm()
         {
@@ -39,8 +42,13 @@ namespace ANGELvsD
             panel.Controls.Add(tableLayoutPanel);
 
         }
-        
-        
+
+        private static int GetPow(int AP)
+        {
+            Apower = AP;
+            return Apower;
+        }
+
         public static Control GetControlAt(int x, int y)
         {
             IntPtr hwnd = WindowFromPoint(new Point(x, y));
@@ -91,8 +99,8 @@ namespace ANGELvsD
                     chBoxes[a].ThreeState = true;
                     chBoxes[a].CheckedChanged += new EventHandler(checkBox_CheckedChanged);
                     chBoxes[a].Click += new EventHandler(checkBox_Click);
-                    chBoxes[a].MouseEnter += new EventHandler(checkBox_Enter);
-                    if (chBoxes[a].Name== "chBox_11.11")
+                    //chBoxes[a].MouseEnter += new EventHandler(checkBox_Enter);
+                    if (chBoxes[a].Name== "chBox_10.10")
                     {
                         chBoxes[a].CheckState = CheckState.Checked;
                         lastChBox = chBoxes[a];
@@ -105,13 +113,18 @@ namespace ANGELvsD
         private void DiaForm_Shown(object sender, EventArgs e)
         {
             tableLayoutPanel.Controls.AddRange(chBoxes);
-            power = AF.APower;
         }
 
-        private void checkBox_Enter(object sender, EventArgs e)
+        internal int Power (int p)
         {
-            Control cont = GetControlAt(MousePosition.X, MousePosition.Y);
+            Apower = p;
+            return Apower;
         }
+
+        //private void checkBox_Enter(object sender, EventArgs e)
+        //{
+        //    Control contr = GetControlAt(MousePosition.X, MousePosition.Y);
+        //}
 
 
         private void checkBox_Click(object sender, EventArgs e)
@@ -180,9 +193,16 @@ namespace ANGELvsD
             coordNext_Y = Int32.Parse(nextYstr);
             int deliverX = Math.Abs(coordNext_X - coordCurr_X);
             int deliverY = Math.Abs(coordNext_Y - coordCurr_Y);
-            if (Math.Abs(deliverX)>power || Math.Abs(deliverY) > power)
+            if (Math.Abs(deliverX) >= Apower || Math.Abs(deliverY) >= Apower)
             {
+                MessageBox.Show("Недостаточно сил.");
+
+                //переход хода Ангела:
+                label.Text = "Ход\nАнгела";
+                chb.CheckState = CheckState.Unchecked;
+                isAngel = true;
                 isPower = false;
+                //MessageBox.Show(chb.Name + "\n\r" + lastChBox.Name);
                 return isPower;
             }
             else
