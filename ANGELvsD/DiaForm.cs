@@ -87,13 +87,13 @@ namespace ANGELvsD
                     chBoxes[a] = new CheckBox();
                     chBoxes[a].Name = "chBox_" + i.ToString("00") + "." + j.ToString("00");
                     chBoxes[a].Tag = "tag_" + i.ToString("00") + "." + j.ToString("00");
-                    //chBoxes[a].Dock = DockStyle.Fill;
-                    chBoxes[a].Size = new Size(24, 24);
-                    chBoxes[a].TextAlign = ContentAlignment.MiddleCenter;
+                    chBoxes[a].Dock = DockStyle.Fill;
+                    chBoxes[a].AutoSize = true;
+                    chBoxes[a].CheckAlign = ContentAlignment.MiddleCenter;
+                    chBoxes[a].Size = new Size(32, 32);
                     chBoxes[a].ThreeState = true;
                     chBoxes[a].CheckedChanged += new EventHandler(checkBox_CheckedChanged);
                     chBoxes[a].Click += new EventHandler(checkBox_Click);
-                    //chBoxes[a].MouseEnter += new EventHandler(checkBox_Enter);
                     if (chBoxes[a].Name== "chBox_10.10")
                     {
                         chBoxes[a].CheckState = CheckState.Checked;
@@ -114,11 +114,6 @@ namespace ANGELvsD
             Apower = p;
             return Apower;
         }
-
-        //private void checkBox_Enter(object sender, EventArgs e)
-        //{
-        //    Control contr = GetControlAt(MousePosition.X, MousePosition.Y);
-        //}
 
         private void checkBox_Click(object sender, EventArgs e)
         {
@@ -192,7 +187,6 @@ namespace ANGELvsD
                 coordNext_Y,
                 coordCurr_X,
                 coordCurr_Y;
-            //MessageBox.Show(chb.Name + "\n\r" + lastChBox.Name);
             string currXstr = (lastChBox.Name.Substring(6)).Remove(2);
             string currYstr = (lastChBox.Name.Substring(9));
             string nextXstr = (chb.Name.Substring(6)).Remove(2);
@@ -212,7 +206,6 @@ namespace ANGELvsD
                 chb.CheckState = CheckState.Unchecked;
                 isAngel = true;
                 isPower = false;
-                //MessageBox.Show(chb.Name + "\n\r" + lastChBox.Name);
                 return isPower;
             }
             else

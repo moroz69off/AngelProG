@@ -7,6 +7,7 @@ namespace ANGELvsD
 
     public partial class AngelForm : Form
     {
+        private DiaForm DF = new DiaForm();
         public int APower;
 
         public AngelForm()
@@ -21,6 +22,7 @@ namespace ANGELvsD
         private void ButtonStart_Click(object sender, EventArgs e)
         {
             DiaForm diaForm = new DiaForm { Owner = ActiveForm };
+            diaForm.Power((int)numericUpDownALeave.Value);
             diaForm.ShowDialog();
         }
 
@@ -28,7 +30,7 @@ namespace ANGELvsD
 
         private void NumericUpDownALeave_ValueChanged(object sender, EventArgs e)
         {
-            DiaForm DF = new DiaForm();
+            
             DF.Power((int)numericUpDownALeave.Value);
         }
     }
